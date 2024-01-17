@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.animate-bounce-1 {
+    animation: bounce 1s 0.25s infinite;
+}
+
+.animate-bounce-2 {
+    animation: bounce 1s 0.5s infinite;
+}
+
+.animate-bounce-3 {
+    animation: bounce 1s 0.75s infinite;
+}
+
+.animate-bounce-4 {
+    animation: bounce 1s 1.20s infinite;
+}

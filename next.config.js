@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {    images: {
-    domains: ['perenual.com'],
+    remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'perenual.com',
+          pathname: '**',
+        },
+      ],
 },}
 
 module.exports = nextConfig

@@ -16,9 +16,12 @@ module.exports = {
         'deep-green':'#041C02',
         'coral':'#CD625A',
         'medium-green':'#4c8558',
+        'light-pink': '#E0AFA5',
+        'light-yellow': '#FBDD99'
       },
       screens: {
-        'surface-pro':'912px',
+        'surface-pro':'1114px',
+        'brk-special': '1306px'
       },
     },
   },

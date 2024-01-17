@@ -3,7 +3,7 @@ import Image from 'next/image'
 const FeaturesCard = ({ headText, circleColor, imgType, bodyText }) => {
 
   return (
-    <div className="text-white px-6 text-center md:text-start my-8 md:my-0 w-1/3">
+    <div className="text-white px-6 text-center md:text-start my-8 md:my-0 w-full">
       <button className={`rounded-full ${circleColor} p-4 mx-auto md:mx-0 flex justify-center items-center mb-2 opacity-80`}>
         <Image
           src={imgType}
