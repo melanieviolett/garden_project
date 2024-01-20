@@ -29,7 +29,6 @@ const Filter = ({ options, searchParams, query, clear }) => {
   };
 
   useEffect(() => {
-    console.log(clear)
 
     if (clear) {
       if(!searchParams.get("watering")){

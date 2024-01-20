@@ -8,45 +8,44 @@ import communityImg from "../public/icons8-community-48.png";
 import publicDiscImg from "../public/undraw_public_discussion_re_w9up.svg";
 import Link from "next/link";
 
-
 const Home = () => {
   return (
     <>
-      <div className="absolute -z-10 top-0">
+      {/* <div className="absolute -z-10 top-0">
         <Image
           src={backgroundImg}
           alt="background image"
           unoptimized={true}
           className="w-screen h-screen object-cover"
         />
+      </div> */}
+      <div className="bg-deep-green">
+        <header className=" bg-deep-green flex flex-col md:flex-row whitespace-normal w-10/12 mx-auto items-center justify-around pt-12 md:pt-28">
+          <Image
+            src={wishesImg}
+            alt="wishes image"
+            className="max-w-[300px] max-h-[200px] md:max-w-none md:max-h-none md:w-[30%] w-4/5 h-auto"
+          />
+
+          <div className="w-3/4 text-center">
+            <h2 className="text-white text-2xl lg:text-5xl whitespace-normal md:text-3xl sm:text-xl p-2">
+              Find the Best Plant to Grow Next
+            </h2>
+
+            <p className="text-gray-300 inline-block pt-3 text-sm lg:text-base p-2">
+              When choosing your new plant, we provide for you many options of
+              plants. These plants would give you the most success based on the
+              conditions you'll provide for it.
+            </p>
+
+            <Link href="/grow">
+              <button className="bg-coral w-1/4 rounded-lg md:text-base text-sm text-white mt-3 p-2 text-center hover:opacity-70">
+                Grow
+              </button>
+            </Link>
+          </div>
+        </header>
       </div>
-
-      <header className="flex flex-col md:flex-row whitespace-normal w-10/12 mx-auto items-center justify-around pt-12 md:pt-28">
-        <Image
-          src={wishesImg}
-          alt="wishes image"
-          className="max-w-[300px] max-h-[200px] md:max-w-none md:max-h-none md:w-[30%] w-4/5 h-auto"
-        />
-
-        <div className="w-3/4 text-center">
-          <h2 className="text-white text-2xl lg:text-5xl whitespace-normal md:text-3xl sm:text-xl p-2">
-            Find the Best Plant to Grow Next
-          </h2>
-
-          <p className="text-gray-300 inline-block pt-3 text-sm lg:text-base p-2">
-            When choosing your new plant, we provide for you many options of
-            plants. These plants would give you the most success based on the
-            conditions you'll provide for it.
-          </p>
-
-          <Link href="/grow">
-            <button className="bg-coral w-1/4 rounded-lg md:text-base text-sm text-white mt-3 p-2 text-center hover:opacity-70">
-              Grow
-            </button>
-          </Link>
-        </div>
-      </header>
-
       <section className="bg-deep-green">
         <div className="flex flex-col md:flex-row w-10/12 mx-auto justify-between py-24 bg-deep-green">
           <FeaturesCard
@@ -82,11 +81,7 @@ const Home = () => {
             <h2 className="text-xl lg:text-4xl text-white font-medium my-4">
               Join the Community Today!
             </h2>
-            <p className="text-white">
-              Blog feature coming soon.
-            </p>
-
-          
+            <p className="text-white">Blog feature coming soon.</p>
           </div>
         </div>
       </section>
