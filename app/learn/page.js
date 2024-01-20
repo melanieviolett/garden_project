@@ -95,13 +95,13 @@ export default async function Page({ searchParams }) {
                   Watering
                 </p>
 
-                {data.watering_general_benchmark.value && (
+                {data.watering_general_benchmark?.value && (
                   <p className="mb-6 md:text-base text-sm">
                     Every {data.watering_general_benchmark.value}{" "}
                     {data.watering_general_benchmark.unit}.
                   </p>
                 )}
-                {data.watering_general_benchmark.value == undefined && (
+                {data.watering_general_benchmark?.value == undefined && (
                   <p>The watering data is unavailable for this plant.</p>
                 )}
               </div>
@@ -120,8 +120,7 @@ export default async function Page({ searchParams }) {
                 <p className="mb-6 md:text-base text-sm">
                   It will do well in
                   {" " +
-                    data.sunlight
-                      .map((w) => w.toLowerCase())
+                    data.sunlight?.map((w) => w.toLowerCase())
                       .join(", ")
                       .replace(/, ([^,]*)$/, " and $1")}
                   .{" "}
@@ -170,7 +169,7 @@ export default async function Page({ searchParams }) {
         </div>
       </section>
 
-      {(data.pruning_month || data.pruning_count.amount) && (
+      {(data.pruning_month || data.pruning_count?.amount) && (
         <section className="text-white py-10 flex justify-center items-start flex-col w-10/12 mx-auto">
           <h4 className="text-2xl text-light-pink my-4 font-semibold">
             Plant Maintenance and Propogation
@@ -371,7 +370,7 @@ export default async function Page({ searchParams }) {
                 </p>
               )}
             </div>
-            <div className="flex flex-row md:ml-6 ml-0 items-center">
+            <div className="flex flex-row md:ml-6 ml-0 items-center justify-between mx-auto w-10/12">
               <GiSpotedFlower
                 className="mr-2 text-light-pink animate-bounce-3 "
                 size={24}
@@ -399,42 +398,42 @@ export default async function Page({ searchParams }) {
                 size={24}
               />
               <GiSpotedFlower
-                className="mr-18 mt-28 text-light-yellow ml-4 animate-bounce-3"
+                className="mr-18 mt-28 text-light-yellow ml-4 animate-bounce-3 hidden md:flex"
                 size={24}
               />
               <GiSpotedFlower
-                className=" text-coral mt-2 animate-bounce-4"
-                size={24}
-              />
-
-              <GiSpotedFlower
-                className=" text-[#AE667A] mt-20 animate-bounce-2"
-                size={24}
-              />
-              <GiSpotedFlower
-                className=" ml-12 mt-7 animate-bounce-4 "
+                className=" text-coral mt-2 animate-bounce-4 hidden md:flex"
                 size={24}
               />
 
               <GiSpotedFlower
-                className="mr-2 text-light-pink animate-bounce"
+                className=" text-[#AE667A] mt-20 animate-bounce-2 hidden md:flex"
                 size={24}
               />
               <GiSpotedFlower
-                className="mr-6 mt-24 text-light-yellow ml-4 animate-bounce"
-                size={24}
-              />
-              <GiSpotedFlower
-                className=" text-coral mt-8 animate-bounce-2"
+                className=" ml-12 mt-7 animate-bounce-4 hidden md:flex"
                 size={24}
               />
 
               <GiSpotedFlower
-                className=" text-[#AE667A] mt-20 animate-bounce-4"
+                className="mr-2 text-light-pink animate-bounce hidden md:flex"
                 size={24}
               />
               <GiSpotedFlower
-                className=" ml-4 mt-18 animate-bounce-3"
+                className="mr-6 mt-24 text-light-yellow ml-4 animate-bounce hidden md:flex"
+                size={24}
+              />
+              <GiSpotedFlower
+                className=" text-coral mt-8 animate-bounce-2 hidden md:flex"
+                size={24}
+              />
+
+              <GiSpotedFlower
+                className=" text-[#AE667A] mt-20 animate-bounce-4 hidden md:flex"
+                size={24}
+              />
+              <GiSpotedFlower
+                className=" ml-4 mt-18 animate-bounce-3 hidden md:flex"
                 size={24}
               />
             </div>
@@ -476,95 +475,95 @@ export default async function Page({ searchParams }) {
             />
 
             <GiSpotedFlower
-              className=" text-[#AE667A] mt-20 w-48 animate-bounce-2 md:w-6"
+              className=" text-[#AE667A] mt-20 w-48 animate-bounce-2 md:w-6 hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className=" ml-12 mt-7 w-48 animate-bounce-4 md:w-6"
-              size={24}
-            />
-
-            <GiSpotedFlower
-              className="mr-2 text-light-pink animate-bounce hidden md:flex"
-              size={24}
-            />
-            <GiSpotedFlower
-              className="mr-6 mt-24 text-light-yellow ml-4 animate-bounce hidden md:flex"
-              size={24}
-            />
-            <GiSpotedFlower
-              className=" text-coral mt-8 animate-bounce-2 hidden md:flex"
+              className=" ml-12 mt-7 w-48 animate-bounce-4 md:w-6 hidden surface-pro:flex"
               size={24}
             />
 
             <GiSpotedFlower
-              className=" text-[#AE667A] mt-20 animate-bounce-4 hidden md:flex"
+              className="mr-2 text-light-pink animate-bounce hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className=" ml-4 mt-18 animate-bounce-3 hidden md:flex"
+              className="mr-6 mt-24 text-light-yellow ml-4 animate-bounce hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className="mr-2 text-light-pink mt-28 animate-bounce  hidden md:flex"
-              size={24}
-            />
-            <GiSpotedFlower
-              className="mr-6 mt-14 text-light-yellow ml-6 animate-bounce-4 hidden md:flex"
-              size={24}
-            />
-            <GiSpotedFlower
-              className=" text-coral mt-8 animate-bounce-2 hidden md:flex"
+              className=" text-coral mt-8 animate-bounce-2 hidden surface-pro:flex"
               size={24}
             />
 
             <GiSpotedFlower
-              className=" text-[#AE667A] mt-20 animate-bounce-3 hidden md:flex"
-              size={24}
-            />
-            <GiSpotedFlower className=" ml-12 mt-12 animate-bounce hidden md:flex" size={24} />
-
-            <GiSpotedFlower
-              className="mr-2 text-light-pink animate-bounce-2 hidden md:flex"
+              className=" text-[#AE667A] mt-20 animate-bounce-4 hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className="mr-18 mt-28 text-light-yellow ml-4 animate-bounce-3 hidden md:flex" 
+              className=" ml-4 mt-18 animate-bounce-3 hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className=" text-coral mt-2 animate-bounce-4 hidden md:flex"
-              size={24}
-            />
-
-            <GiSpotedFlower
-              className=" text-[#AE667A] mt-20 animate-bounce-2 hidden md:flex"
+              className="mr-2 text-light-pink mt-28 animate-bounce hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className=" ml-12 mt-7 animate-bounce-4  hidden md:flex"
+              className="mr-6 mt-14 text-light-yellow ml-6 animate-bounce-4 hidden surface-pro:flex"
+              size={24}
+            />
+            <GiSpotedFlower
+              className=" text-coral mt-8 animate-bounce-2 hidden surface-pro:flex"
               size={24}
             />
 
             <GiSpotedFlower
-              className="mr-2 text-light-pink animate-bounce hidden md:flex"
+              className=" text-[#AE667A] mt-20 animate-bounce-3 hidden surface-pro:flex"
+              size={24}
+            />
+            <GiSpotedFlower className=" ml-12 mt-12 animate-bounce hidden surface-pro:flex" size={24} />
+
+            <GiSpotedFlower
+              className="mr-2 text-light-pink animate-bounce-2 hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className="mr-6 mt-24 text-light-yellow ml-4 animate-bounce hidden md:flex"
+              className="mr-18 mt-28 text-light-yellow ml-4 animate-bounce-3 hidden surface-pro:flex" 
               size={24}
             />
             <GiSpotedFlower
-              className=" text-coral mt-8 animate-bounce-2 hidden md:flex"
+              className=" text-coral mt-2 animate-bounce-4 hidden surface-pro:flex"
               size={24}
             />
 
             <GiSpotedFlower
-              className=" text-[#AE667A] mt-20 animate-bounce-4 hidden md:flex" 
+              className=" text-[#AE667A] mt-20 animate-bounce-2 hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className=" ml-4 mt-18 animate-bounce-3 hidden md:flex"
+              className=" ml-12 mt-7 animate-bounce-4  hidden surface-pro:flex"
+              size={24}
+            />
+
+            <GiSpotedFlower
+              className="mr-2 text-light-pink animate-bounce hidden surface-pro:flex"
+              size={24}
+            />
+            <GiSpotedFlower
+              className="mr-6 mt-24 text-light-yellow ml-4 animate-bounce hidden surface-pro:flex"
+              size={24}
+            />
+            <GiSpotedFlower
+              className=" text-coral mt-8 animate-bounce-2 hidden surface-pro:flex"
+              size={24}
+            />
+
+            <GiSpotedFlower
+              className=" text-[#AE667A] mt-20 animate-bounce-4 hidden surface-pro:flex" 
+              size={24}
+            />
+            <GiSpotedFlower
+              className=" ml-4 mt-18 animate-bounce-3 hidden surface-pro:flex"
               size={24}
             />
           </div>

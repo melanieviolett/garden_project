@@ -89,19 +89,18 @@ export default function Page() {
   return (
     <>
       <section className="bg-deep-green pt-6 min-h-screen ">
-        <div className="flex flex-row justify-between items-center mb-12 w-10/12 mx-auto">
-          {/* src={plantsImg} alt="plants image" className="w-1/4 h-auto" */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12 w-10/12 mx-auto">
           <Image
             src={gardeningImg}
             alt="garden image"
-            className="md:w-1/4 w-1/2 h-auto"
+            className="md:w-1/4 sm:1/2 w-3/4 h-auto"
           />
           <div className="flex flex-col items-center w-3/5 text-center">
-            <h2 className="text-[#E0AFA5] font-bold text-xl md:text-4xl py-4">
+            <h2 className="text-[#E0AFA5] font-bold sm:text-2xl md:text-4xl text-xl py-4">
               Find the Best Plants to Start Growing Next!
             </h2>
 
-            <p className="text-xs md:text-base text-[#E0AFA5]/70 font-semibold">
+            <p className="sm:text-small text-xs md:text-base text-[#E0AFA5]/70 font-semibold">
               Filter by as many options as possible to get the best results for
               you (and your plants). Click "Learn More" on your card result to
               learn all the inside tips on how to care for your new plant. Happy

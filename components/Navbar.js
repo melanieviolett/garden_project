@@ -15,13 +15,12 @@ const Navbar = () => {
           <ul className="flex flex-row items-center gap-x-1">
             <li>
               <div className="text-coral mr-1">
-                <GiFlowers size={38}/>
+                <GiFlowers size={38} />
               </div>
             </li>
             <li className="md:text-4xl font-bold hover:underline decoration-wavy whitespace-nowrap text-xl">
               <Link href="/">Grow Your Garden</Link>
             </li>
-            
           </ul>
         </div>
 
@@ -40,9 +39,16 @@ const Navbar = () => {
         <div className="md:hidden block">
           <Hamburger toggled={open} toggle={setOpen} size={30} />
           {open && (
-            <ul className="fixed bg-coral rounded md:w-1/4 w-1/6 text-white text-base text-center p-1">
+            <ul className="absolute bg-coral rounded md:w-1/4 w-1/6 text-white text-base text-center p-1">
               <li className="hover:underline decoration-wavy py-4">
-                <Link href="/grow">Grow</Link>
+                <Link
+                  href="/grow"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  Grow
+                </Link>
               </li>
               {/* <li className='hover:underline decoration-wavy py-4'>
                             <Link href="#">Blog</Link>
