@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
-const SearchBar = ({ query }) => {
+const SearchBar = ({ query, color }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [str, setStr] = useState(searchParams.get(query) || "");
@@ -24,15 +24,13 @@ const SearchBar = ({ query }) => {
   };
 
   useEffect(() => {
-
-    if(!searchParams.get("q")){
+    if (!searchParams.get("q")) {
       setStr("");
     }
-
-  }, [searchParams])
+  }, [searchParams]);
 
   return (
-    <div className="w-10/12 md:w-1/4 relative">
+    <div className="w-10/12 md:w-1/3 relative">
       <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none h-12 w-32">
         <svg
           className="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -56,7 +54,7 @@ const SearchBar = ({ query }) => {
       />
       <button
         onClick={(e) => makeQueryStr(str)}
-        className="bg-coral text-white absolute end-2 bottom-2 hover:bg-coral/80 focus:ring-4 font-medium rounded-lg md:text-sm text-xs px-4 py-2 "
+        className={`bg-${color} text-deep-green absolute end-2 bottom-2 focus:ring-4 font-semibold hover:underline hover:decoration-wavy rounded-lg md:text-sm text-xs px-4 py-2`}
       >
         Search
       </button>

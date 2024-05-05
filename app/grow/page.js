@@ -88,7 +88,7 @@ export default function Page() {
 
   return (
     <>
-      <section className="bg-deep-green pt-6 min-h-screen ">
+      <div className="pt-6 min-h-screen ">
         <div className="flex flex-col md:flex-row justify-between items-center mb-12 w-10/12 mx-auto">
           <Image
             src={gardeningImg}
@@ -111,6 +111,7 @@ export default function Page() {
         <div className="flex flex-wrap justify-around items-center md:items-end gap-4 mb-12 w-10/12 mx-auto">
           <SearchBar
             query={"q"}
+            color="coral"
             onClick={() => {
               setClearFilters(false);
             }}
@@ -198,7 +199,7 @@ export default function Page() {
             })}
           </div>
         )}
-      </section>
+      </div>
     </>
   );
 }

@@ -11,7 +11,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Navbar backgroundColor="bg-deep-green"></Navbar>
-        {children}
+        <section className="bg-deep-green">
+          {children}
+        </section>
         <Footer backgroundColor="bg-deep-green"></Footer>
       </body>
     </html>
