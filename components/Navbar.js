@@ -4,8 +4,16 @@ import Link from "next/link";
 import { Divide as Hamburger } from "hamburger-react";
 import { GiFlowers } from "react-icons/gi";
 import { usePathname } from "next/navigation";
-import { BsPersonCircle } from "react-icons/bs";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
+// not gonna map here, but gonna just get prof info of the current user
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -24,34 +32,14 @@ const Navbar = () => {
                     <GiFlowers size={38} />
                   </div>
                 </li>
-                <li className="md:text-4xl font-bold hover:underline decoration-wavy whitespace-nowrap text-xl">
+                <li
+                  className={`md:text-4xl font-bold hover:underline ${
+                    pathname == "/" ? "underline decoration-2" : ""
+                  } decoration-wavy whitespace-nowrap text-xl`}
+                >
                   <Link href="/">Grow Your Garden</Link>
                 </li>
               </ul>
-            </div>
-
-            <ul className="hidden md:flex font-semibold text-2xl">
-              <li className="hover:underline decoration-wavy brightness-75">
-                <Link href="/grow">Grow</Link>
-              </li>
-            </ul>
-
-            <div className="md:hidden block">
-              <Hamburger toggled={open} toggle={setOpen} size={30} />
-              {open && (
-                <ul className="absolute bg-coral rounded md:w-1/4 w-1/6 text-white text-base text-center p-1">
-                  <li className="hover:underline decoration-wavy py-4">
-                    <Link
-                      href="/grow"
-                      onClick={() => {
-                        setOpen(false);
-                      }}
-                    >
-                      Grow
-                    </Link>
-                  </li>
-                </ul>
-              )}
             </div>
           </nav>
         </div>
@@ -68,34 +56,86 @@ const Navbar = () => {
                     <GiFlowers size={38} />
                   </div>
                 </li>
-                <li className="md:text-4xl font-bold hover:underline decoration-wavy whitespace-nowrap text-xl">
+                <li
+                  className={`md:text-4xl font-bold hover:underline ${
+                    pathname == "/" ? "underline decoration-2" : ""
+                  } decoration-wavy decoration-2 whitespace-nowrap text-xl`}
+                >
                   <Link href="/">Grow Your Garden</Link>
                 </li>
               </ul>
             </div>
 
             <ul className="hidden blog-break:flex relative font-semibold text-2xl items-center justify-end space-x-20 w-3/4">
-              <li className="hover:underline decoration-wavy">
+              <li
+                className={`hover:underline decoration-wavy ${
+                  pathname == "/grow" ? "underline decoration-1" : ""
+                }`}
+              >
                 <Link href="/grow">Grow</Link>
               </li>
-              <li className="hover:underline decoration-wavy">
+              <li
+                className={`hover:underline decoration-wavy ${
+                  pathname == "/blogs" ? "underline decoration-1" : ""
+                }`}
+              >
                 <Link href="/blogs">Blog</Link>
               </li>
-              <li className="hover:underline decoration-wavy">
+              <li
+                className={`hover:underline decoration-wavy ${
+                  pathname == "/login" ? "underline decoration-1" : ""
+                }`}
+              >
                 <Link href="/login">Login</Link>
               </li>
+
               <li className="hover:underline decoration-wavy">
-                <Link href="/profile">
-                  <BsPersonCircle size={40} />
-                </Link>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <div className="rounded-full grad5 md:w-20 md:h-20 w-10 h-10"></div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="text-white font-semibold border-coral bg-coral">
+                    <DropdownMenuItem
+                      className={`focus:bg-coral/80 ${
+                        pathname == "/e_profile"
+                          ? "underline decoration-wavy decoration-1"
+                          : ""
+                      }`}
+                    >
+                      <Link href="/e_profile">Edit profile</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      className={`focus:bg-coral/80 ${
+                        pathname == "/e_posts"
+                          ? "underline decoration-wavy decoration-1"
+                          : ""
+                      }`}
+                    >
+                      <Link href="/e_posts">Edit posts</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      className={`focus:bg-coral/80 ${
+                        pathname == "/view_profile"
+                          ? "underline decoration-wavy decoration-1"
+                          : ""
+                      }`}
+                    >
+                      <Link href="/view_profile">View public profile</Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </li>
             </ul>
 
             <div className="blog-break:hidden block">
               <Hamburger toggled={open} toggle={setOpen} size={30} />
               {open && (
-                <ul className="absolute bg-coral rounded blog-break:w-1/4 w-1/6 text-white text-base text-center p-1">
-                  <li className="hover:underline decoration-wavy py-4">
+                <ul className="absolute bg-coral rounded text-white blog-break:text-base text-sm text-center p-1">
+                  <li
+                    className={`hover:underline decoration-wavy py-4 ${
+                      pathname == "/grow" ? "underline decoration-1" : ""
+                    }`}
+                  >
                     <Link
                       href="/grow"
                       onClick={() => {
@@ -105,7 +145,11 @@ const Navbar = () => {
                       Grow
                     </Link>
                   </li>
-                  <li className="hover:underline decoration-wavy py-4">
+                  <li
+                    className={`hover:underline decoration-wavy py-4 ${
+                      pathname == "/blogs" ? "underline decoration-1" : ""
+                    }`}
+                  >
                     <Link
                       href="/blogs"
                       onClick={() => {
@@ -115,7 +159,11 @@ const Navbar = () => {
                       Blog
                     </Link>
                   </li>
-                  <li className="hover:underline decoration-wavy py-4">
+                  <li
+                    className={`hover:underline decoration-wavy py-4 ${
+                      pathname == "/login" ? "underline decoration-1" : ""
+                    }`}
+                  >
                     <Link
                       href="/login"
                       onClick={() => {
@@ -125,10 +173,28 @@ const Navbar = () => {
                       Login
                     </Link>
                   </li>
-                  <li className="hover:underline decoration-wavy py-4">
-                    <Link href="/profile">
-                      Profile
-                    </Link>
+                  <li
+                    className={`hover:underline decoration-wavy py-4 ${
+                      pathname == "/e_profile" ? "underline decoration-1" : ""
+                    }`}
+                  >
+                    <Link href="/e_profile">Edit profile</Link>
+                  </li>
+                  <li
+                    className={`hover:underline decoration-wavy py-4 ${
+                      pathname == "/e_posts" ? "underline decoration-1" : ""
+                    }`}
+                  >
+                    <Link href="/e_posts">Edit posts</Link>
+                  </li>
+                  <li
+                    className={`hover:underline decoration-wavy py-4 ${
+                      pathname == "/view_profile"
+                        ? "underline decoration-1"
+                        : ""
+                    }`}
+                  >
+                    <Link href="/view_profile">View profile</Link>
                   </li>
                 </ul>
               )}

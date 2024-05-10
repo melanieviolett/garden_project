@@ -26,11 +26,13 @@ export default async function Page() {
             <p className="text-3xl font-bold">Welcome back!</p>
           </div>
           <div className="flex flex-col space-y-4 w-3/4">
+          <p className="text-start text-white">Email</p>
             <input
               type="text"
               className="p-4 text-xs md:text-sm rounded-lg"
               placeholder="Email"
             />
+            <p className="text-start text-white">Password</p>
             <input
               type="password"
               className="p-4 text-xs md:text-sm rounded-lg"
@@ -39,7 +41,7 @@ export default async function Page() {
             <button className="bg-coral text-white hover:opacity-70 font-medium rounded-lg md:text-sm text-xs px-4 py-2">
               Log in
             </button>
-            <p className="text-xs text-white">
+            <p className="text-xs md:text-base text-white">
               Don't have an account?{" "}
               <Link
                 href="/register"

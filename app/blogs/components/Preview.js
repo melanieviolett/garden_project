@@ -6,6 +6,11 @@ import { FaRegHeart } from "react-icons/fa";
 import Link from "next/link";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const Preview = ({ pic, title, bodyText, likes, num_comments, del, edit }) => {
   return (
@@ -35,19 +40,32 @@ const Preview = ({ pic, title, bodyText, likes, num_comments, del, edit }) => {
         </div>
         <div className="flex text-white flex-row md:w-4/12 w-7/12 justify-end md:space-x-2 mt-4 md:text-base text-xs">
           <div className="flex items-center w-24">
-            {del && <FaRegTrashAlt className="hover:scale-150 scale-125"></FaRegTrashAlt>}
+            {del && (
+              <Popover>
+                <PopoverTrigger>
+                  <FaRegTrashAlt className="hover:scale-150 scale-125"></FaRegTrashAlt>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <p className="mb-4">
+                    Are you sure you want to delete this blog post?
+                  </p>
+                  <button className="bg-red-500 text-white p-3 rounded-lg hover:scale-125 scale-100">
+                    Yes
+                  </button>
+                </PopoverContent>
+              </Popover>
+            )}
             {!del && (
               <>
-                <FaRegHeart/>
+                <FaRegHeart />
                 <p className="ml-1">{likes}</p>
               </>
             )}
           </div>
           <div className="flex items-center w-24">
-            {edit && <FaRegEdit className="hover:scale-150 scale-125"/>}
             {!edit && (
               <>
-                <FaRegCommentDots/>
+                <FaRegCommentDots />
                 <p className="ml-1">{num_comments}</p>
               </>
             )}

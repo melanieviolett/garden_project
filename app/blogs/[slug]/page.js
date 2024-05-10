@@ -62,7 +62,7 @@ export default function Page({ params }) {
           <div className="flex flex-row items-center ">
             <Sheet>
               <SheetTrigger>
-                <FaRegCommentDots />
+                <FaRegCommentDots className="hover:scale-125"/>
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>
