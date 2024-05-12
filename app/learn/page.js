@@ -1,3 +1,4 @@
+`@ts-nocheck`
 import Image from "next/image";
 import flower from "/public/flowerImg.png";
 import CheckCross from "./components/CheckCross";
@@ -27,8 +28,8 @@ export default async function Page({ searchParams }) {
   const uniq = [...new Set(data.pruning_month)];
 
   return (
-    <div className="bg-deep-green ">
-      <section className="flex flex-col md:flex-row justify-between md:items-stretch pt-6 items-center w-10/12 mx-auto">
+    <>
+      <div className="flex flex-col md:flex-row justify-between md:items-stretch pt-6 items-center w-10/12 mx-auto">
         <div className="text-light-pink md:justify-between gap-y-8 flex flex-col md:flex-col-reverse h-auto items-center">
           <Image
             src={data.default_image?.original_url || flower}
@@ -64,9 +65,9 @@ export default async function Page({ searchParams }) {
             {data.description}
           </p>
         </div>
-      </section>
+      </div>
 
-      <section className="flex flex-col md:flex-col-reverse justify-center pt-6 md:items-stretch items-center my-12 w-10/12 mx-auto">
+      <div className="flex flex-col md:flex-col-reverse justify-center pt-6 md:items-stretch items-center my-12 w-10/12 mx-auto">
         <div className="text-white gap-y-12 flex flex-col h-auto items-center justify-between">
           <div className="text-center">
             <h4 className="md:text-2xl text-lg text-light-pink font-semibold mb-3">
@@ -120,7 +121,8 @@ export default async function Page({ searchParams }) {
                 <p className="mb-6 md:text-base text-sm">
                   It will do well in
                   {" " +
-                    data.sunlight?.map((w) => w.toLowerCase())
+                    data.sunlight
+                      ?.map((w) => w.toLowerCase())
                       .join(", ")
                       .replace(/, ([^,]*)$/, " and $1")}
                   .{" "}
@@ -167,10 +169,10 @@ export default async function Page({ searchParams }) {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {(data.pruning_month || data.pruning_count?.amount) && (
-        <section className="text-white py-10 flex justify-center items-start flex-col w-10/12 mx-auto">
+        <div className="text-white py-10 flex justify-center items-start flex-col w-10/12 mx-auto">
           <h4 className="text-2xl text-light-pink my-4 font-semibold">
             Plant Maintenance and Propogation
           </h4>
@@ -245,10 +247,10 @@ export default async function Page({ searchParams }) {
               </div>
             )}
           </div>
-        </section>
+        </div>
       )}
 
-      <section className=" text-white my-6 py-10 flex flex-col md:flex-row gap-x-8 gap-y-20 md:gap-y-2 w-10/12 mx-auto items-center md:justify-around">
+      <div className=" text-white my-6 py-10 flex flex-col md:flex-row gap-x-8 gap-y-20 md:gap-y-2 w-10/12 mx-auto items-center md:justify-around">
         <div className="bg-light-pink w-72 min-h-[16rem] flex flex-col items-center rounded-xl py-20 relative gap-y-8">
           <div className="rounded-full bg-coral w-10 h-10 z-10 absolute -top-4"></div>
           <div className="w-4/5 items-start flex flex-col gap-y-3">
@@ -276,8 +278,8 @@ export default async function Page({ searchParams }) {
             <CheckCross data={data.fruits} text="Produces fruits" />
           </div>
         </div>
-      </section>
-      <section className="text-white py-6 flex justify-center items-start flex-col gap-y-6 w-10/12 mx-auto">
+      </div>
+      <div className="text-white py-6 flex justify-center items-start flex-col gap-y-6 w-10/12 mx-auto">
         <h4 className="text-2xl text-light-pink font-semibold">
           Fun Facts About This Plant
         </h4>
@@ -459,7 +461,10 @@ export default async function Page({ searchParams }) {
               className=" text-[#AE667A] mt-20 w-48 animate-bounce-3 md:w-6"
               size={24}
             />
-            <GiSpotedFlower className=" ml-12 mt-12 w-48 animate-bounce md:w-6" size={24} />
+            <GiSpotedFlower
+              className=" ml-12 mt-12 w-48 animate-bounce md:w-6"
+              size={24}
+            />
 
             <GiSpotedFlower
               className="mr-2 text-light-pink w-48 animate-bounce-2 md:w-6"
@@ -521,14 +526,17 @@ export default async function Page({ searchParams }) {
               className=" text-[#AE667A] mt-20 animate-bounce-3 hidden surface-pro:flex"
               size={24}
             />
-            <GiSpotedFlower className=" ml-12 mt-12 animate-bounce hidden surface-pro:flex" size={24} />
+            <GiSpotedFlower
+              className=" ml-12 mt-12 animate-bounce hidden surface-pro:flex"
+              size={24}
+            />
 
             <GiSpotedFlower
               className="mr-2 text-light-pink animate-bounce-2 hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
-              className="mr-18 mt-28 text-light-yellow ml-4 animate-bounce-3 hidden surface-pro:flex" 
+              className="mr-18 mt-28 text-light-yellow ml-4 animate-bounce-3 hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
@@ -559,7 +567,7 @@ export default async function Page({ searchParams }) {
             />
 
             <GiSpotedFlower
-              className=" text-[#AE667A] mt-20 animate-bounce-4 hidden surface-pro:flex" 
+              className=" text-[#AE667A] mt-20 animate-bounce-4 hidden surface-pro:flex"
               size={24}
             />
             <GiSpotedFlower
@@ -568,7 +576,7 @@ export default async function Page({ searchParams }) {
             />
           </div>
         )}
-      </section>
-    </div>
+      </div>
+    </>
   );
 }
