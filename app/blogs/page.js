@@ -1,23 +1,24 @@
 import Preview from "./components/Preview";
-import { blogsMockAPI } from "@/utils/constants";
+import prisma from "@/lib/db";
 export default async function Page() {
+  const allPosts = await prisma.post.findMany();
+
   return (
     <div className="flex flex-col space-y-10 justify-between items-center pt-12 w-10/12 mx-auto">
-      {blogsMockAPI.map((blog) => {
+      {allPosts.map((blog) => {
         return (
           <Preview
-            pic={blog.pic}
-            title={blog.title}
-            bodyText={blog.bodyText}
-            likes={blog.likes}
-            num_comments={blog.num_comments}
+            // pic={blog.postImage}
+            bodyText={blog.postTextContent}
+            likes={blog.numLikes}
+            title={blog.postTitle}
+            num_comments={blog.numComments}
             cList={blog.comments}
-            topics={blog.topics}
-            author={blog.author}
+            topics={blog.postTopics}
+            author={blog.authorUsername}
           />
         );
       })}
-
     </div>
   );
 }

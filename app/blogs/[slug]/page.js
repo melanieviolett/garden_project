@@ -4,7 +4,7 @@ import Image from "next/image";
 import cuteImg from "/public/Plant-Hero.jpg";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegCommentDots } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   SheetTrigger,
   Sheet,
@@ -14,21 +14,38 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
+
 export default function Page({ params }) {
   const slug = params.slug.replaceAll("%20", " ");
-
-  const blog = blogsMockAPI.find((blog) => blog.title === slug);
   const [addComment, setAddComment] = useState(false);
+  const [blog, setBlog] = useState(null);
 
-  if (!blog) {
-    throw new Error(404);
-  }
+  useEffect(() => {
+    const getBlogPostWithTitle = async () => {
+      try {
+        const response = await fetch('/api/getPostWithTitle', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ slug }),  
+        });
+
+        const result = await response.json();
+        setBlog(result); 
+      } catch (error) {
+        console.error('Error fetching blog post:', error);
+      }
+    };
+
+    getBlogPostWithTitle();
+  }, []);
 
   return (
     <div className="min-h-screen">
       <div className="flex flex-col bg-m-green space-y-10 rounded-2xl min-h-[36rem] justify-start items-center md:py-8 py-4 w-10/12 mx-auto">
         <div className="flex flex-row w-10/12 items-center justify-between md:min-h-[103px] h-20 sm:h-2/12 md:h-48">
-          {blog.pic ? (
+          {/* {blog.pic ? (
             <Image
               src={cuteImg}
               alt="cute plant pusheen"
@@ -36,28 +53,32 @@ export default function Page({ params }) {
             />
           ) : (
             <div className="md:w-48 sm:w-2/12 w-20 md:min-h-[103px] h-20 sm:h-2/12 md:h-48 rounded-lg custom-css"></div>
-          )}
+          )} */}
+
+          {/* // TODO:in place of pic. remove once pic is working */}
+          <div className="md:w-48 sm:w-2/12 w-20 md:min-h-[103px] h-20 sm:h-2/12 md:h-48 rounded-lg custom-css"></div>
+
           <div className="flex flex-col flex-1 justify-around text-center h-full">
             <div>
               <h2 className="text-lg md:text-4xl text-light-pink font-bold">
-                {blog.title}
+                {blog?.postTitle}
               </h2>
               <p className="text-light-pink/70 font-semibold text-sm md:text-xl">
-                <i>Topics:</i> {blog.topics}
+                <i>Topics:</i> {blog?.postTopics}
               </p>
             </div>
             <p className="text-light-pink/70 font-semibold text-sm md:text-xl">
-              <i>By:</i> {blog.author}
+              <i>By:</i> {blog?.authorUsername}
             </p>
           </div>
         </div>
         <div className="w-10/12 mx-auto text-center md:text-start text-white">
-          <p className="md:text-lg text-sm">{blog.bodyText}</p>
+          <p className="md:text-lg text-sm">{blog?.postTextContent}</p>
         </div>
         <div className=" w-10/12 flex flex-row pt-24 items-center md:justify-start justify-around space-x-8 text-white md:text-lg">
           <div className="flex flex-row items-center">
             <FaRegHeart />
-            <p className="ml-1">{blog.likes}</p>
+            <p className="ml-1">{blog?.numLikes}</p>
           </div>
           <div className="flex flex-row items-center ">
             <Sheet>
@@ -66,7 +87,7 @@ export default function Page({ params }) {
               </SheetTrigger>
               <SheetContent>
                 <SheetHeader>
-                  <SheetTitle>Comments ({blog.num_comments})</SheetTitle>
+                  <SheetTitle>Comments ({blog?.numComments})</SheetTitle>
                   <SheetDescription>
                     <div className="flex flex-col space-y-8">
                       <button
@@ -112,13 +133,13 @@ export default function Page({ params }) {
                         </div>
                       )}
                       <p className="text-white">
-                        {blog.comments.map((c) => {
+                        {blog?.comments?.map((c) => {
                           return (
                             <div className="">
                               <div className="bg-light-pink h-1 mt-4"></div>
                               <div>
                                 <p className="mt-4 text-light-pink/70 md:text-xl text-base">
-                                  {c.username}
+                                  {c.authorUsername}
                                 </p>
                                 <p className="mt-2 md:text-base text-xs mb-12">
                                   {c.comment}
@@ -134,7 +155,7 @@ export default function Page({ params }) {
               </SheetContent>
             </Sheet>
 
-            <p className="ml-1">{blog.num_comments}</p>
+            <p className="ml-1">{blog?.numComments}</p>
           </div>
         </div>
       </div>

@@ -142,9 +142,15 @@ const Navbar = ({ session, signOutProps }) => {
                     />
 
                     <DropdownItem
-                      linkText="Edit posts"
+                      linkText="Create new post"
                       pathname={pathname}
-                      pathname_var="/e_posts"
+                      pathname_var="/create_post"
+                    />
+
+                    <DropdownItem
+                      linkText="View your posts"
+                      pathname={pathname}
+                      pathname_var="/your_posts"
                     />
 
                     <DropdownItem
@@ -190,9 +196,15 @@ const Navbar = ({ session, signOutProps }) => {
                   />
                   <HamburgerItem
                     pathname={pathname}
-                    pathname_var="/e_posts"
+                    pathname_var="/create_post"
                     setOpen={setOpen}
-                    linkText="Edit posts"
+                    linkText="Create new post"
+                  />
+                  <HamburgerItem
+                    pathname={pathname}
+                    pathname_var="/your_posts"
+                    setOpen={setOpen}
+                    linkText="View your posts"
                   />
                   <HamburgerItem
                     pathname={pathname}

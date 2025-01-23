@@ -23,7 +23,7 @@ export default async function RootLayout({ children }) {
           session={session}
           signOutProps={signOutProps}
         ></Navbar>
-        <section className="bg-deep-green">{children}</section>
+        <section className="bg-deep-green" session={session}>{children}</section>
         <Footer backgroundColor="bg-deep-green"></Footer>
       </body>
     </html>
