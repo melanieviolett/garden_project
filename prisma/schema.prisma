@@ -19,6 +19,7 @@ model User {
   plants_wanting      String?
   plants_currently    String?
   comments            Comment[]
+  registered          Boolean   @default(false)
 
   @@map(name: "users")
 }

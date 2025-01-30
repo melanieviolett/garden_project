@@ -3,16 +3,34 @@ import prisma from "@/lib/db";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import validate from "@/lib/utils";
+import { validate } from "@/lib/utils";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export async function addPost(formData) {
-  // TODO: change for username to be dynamic
   // TODO: add image support
+  const session = await auth();
+  if (session === null || session === undefined) {
+    redirect("/login");
+  }
+  if (session.user === null || session.user === undefined) {
+    redirect("/login");
+  }
+
+  const currentUser = await prisma.user.findFirst({
+    where: {
+      email: session.user.email,
+    },
+  });
+
+  if (currentUser === null || currentUser === undefined) {
+    redirect("/login");
+  }
+
+
   try {
     await prisma.post.create({
       data: {
-        authorUsername: "melly",
+        authorUsername: currentUser.username,
         postTextContent: formData.get("textContent"),
         numLikes: 0,
         numComments: 0,
@@ -42,6 +60,7 @@ const registerSchema = z.object({
     .string()
     .trim()
     .min(1, "Please enter plants you want to grow."),
+  registered: z.boolean(),
 });
 
 export async function addUser(prevState, formData) {
@@ -51,6 +70,7 @@ export async function addUser(prevState, formData) {
     botanical_interests: formData.getAll("botanical_interests"),
     plants_currently: formData.get("plants_currently"),
     plants_wanting: formData.get("plants_wanting"),
+    registered: true,
   });
 
   // return message if validation fails
@@ -80,16 +100,13 @@ export async function addUser(prevState, formData) {
         ...parsedValues,
       },
     });
-    user.needsRegistration = false;
     // success registering, so redirect to blogs page
     redirect("/blogs");
   } catch (e) {
-    console.log("e ", e)
+    console.log("e ", e);
     // handles unique attribute failure on username
     if (e instanceof PrismaClientKnownRequestError && e.code === "P2002") {
-      if(e.meta.target.includes("username")) {
-        console.log(" 2 HIIII")
-
+      if (e.meta.target.includes("username")) {
         return {
           success: false,
           message: "Invalid data",
@@ -98,12 +115,12 @@ export async function addUser(prevState, formData) {
           },
         };
       }
-    } 
+    }
     console.log("Error registering user: ", e.message);
     return {
       success: false,
       message: "Error registering user",
       data: { general_error: "Error registering user" },
-    }
+    };
   }
 }

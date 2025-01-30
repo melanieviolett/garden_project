@@ -1,16 +1,11 @@
 import authImg from "/public/undraw_authentication_re_svpt.svg";
 import Image from "next/image";
-import { auth } from "@/auth";
-import checkAuth from "@/lib/utils";
 import LoginForm from "./components/LoginForm";
-// import LoginForm from "./components/LoginForm";
+
 
 export default async function Page() {
-  const session = await auth();
 
-  // useEffect(() => {
-  //   await checkAuth;
-  // }, [session]);
+
   return (
     <div className="w-full">
       <div className="flex flex-col md:flex-row-reverse items-center min-h-screen">

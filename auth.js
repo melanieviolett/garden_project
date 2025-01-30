@@ -41,6 +41,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             },
           });
         }
+
         return true;
       } catch (error) {
         console.log("Error logging in: ", error.message);

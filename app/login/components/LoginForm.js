@@ -1,6 +1,5 @@
 import { signIn, auth, providerMap } from "/auth.js";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-// import checkAuth from "/lib/utils.js";
 
 export default function LoginForm() {
   return (
@@ -10,7 +9,7 @@ export default function LoginForm() {
           <form
             action={async () => {
               "use server";
-              await signIn(provider.id);
+              await signIn(provider.id, { redirectTo: "/register" });
             }}
           >
             <button

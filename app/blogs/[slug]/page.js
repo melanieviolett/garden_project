@@ -135,7 +135,7 @@ export default function Page({ params }) {
                       <p className="text-white">
                         {blog?.comments?.map((c) => {
                           return (
-                            <div className="">
+                            <div className="" key={c.id}>
                               <div className="bg-light-pink h-1 mt-4"></div>
                               <div>
                                 <p className="mt-4 text-light-pink/70 md:text-xl text-base">
