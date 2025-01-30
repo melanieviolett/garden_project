@@ -37,11 +37,12 @@ export default async function Page() {
               likes={blog.numLikes}
               title={blog.postTitle}
               num_comments={blog.numComments}
-              cList={blog.comments}
+              // cList={blog.comments}
               topics={blog.postTopics}
               author={blog.authorUsername}
               del={true}
               edit={true}
+              key={blog.id}
             />
           );
       })}

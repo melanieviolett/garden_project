@@ -64,16 +64,17 @@ export default async function Page() {
         {userPosts.map((blog) => {
             return (
               <Preview
-                pic={blog.pic}
-                title={blog.title}
-                bodyText={blog.bodyText}
-                likes={blog.likes}
-                num_comments={blog.num_comments}
-                cList={blog.comments}
-                topics={blog.topics}
-                author={blog.author}
+                // pic={blog.pic}
+                title={blog.postTitle}
+                bodyText={blog.postTextContent}
+                likes={blog.numLikes}
+                num_comments={blog.numComments}
+                // cList={blog.comments}
+                topics={blog.postTopics}
+                author={blog.authorUsername}
                 del={false}
                 edit={false}
+                key={blog.id}
               />
             );
         })}
