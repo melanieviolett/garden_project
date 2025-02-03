@@ -7,29 +7,7 @@ import { auth } from "/auth.js";
 import { isRedirectError } from "next/dist/client/components/redirect";
 
 export default async function Page() {
-  const session = await auth();
-  if (session === null || session === undefined) {
-    redirect("/login");
-  }
-  if (session.user === null || session.user === undefined) {
-    redirect("/login");
-  }
 
-  let finalResult = null;
-  try {
-    const result = await prisma.user.findFirst({
-      where: {
-        email: session.user.email,
-      },
-    });
-    finalResult = result;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-
-  if (!finalResult || finalResult.registered === true) {
-    redirect("/blogs");
-  }
   return (
     <div className="w-full">
       <div className="flex flex-col lg:flex-row-reverse items-center min-h-screen">

@@ -1,6 +1,20 @@
 import { addPost } from "@/app/actions";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
+import prisma from "@/lib/db";
 
 export default async function Page() {
+  const session = await auth();
+  const currentUser = await prisma.user.findFirst({
+    where: {
+      email: session.user.email,
+    },
+  });
+
+  if (currentUser.registered === false) {
+    redirect("/register");
+  }
+
   return (
     <div className="flex flex-col space-y-10 justify-between items-center pt-12 w-10/12 mx-auto">
       <form

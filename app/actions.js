@@ -8,24 +8,6 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export async function addPost(formData) {
   // TODO: add image support
-  const session = await auth();
-  if (session === null || session === undefined) {
-    redirect("/login");
-  }
-  if (session.user === null || session.user === undefined) {
-    redirect("/login");
-  }
-
-  const currentUser = await prisma.user.findFirst({
-    where: {
-      email: session.user.email,
-    },
-  });
-
-  if (currentUser === null || currentUser === undefined) {
-    redirect("/login");
-  }
-
 
   try {
     await prisma.post.create({
@@ -62,6 +44,9 @@ const registerSchema = z.object({
     .min(1, "Please enter plants you want to grow."),
   registered: z.boolean(),
 });
+
+
+
 
 export async function addUser(prevState, formData) {
   // validate form data
@@ -100,8 +85,8 @@ export async function addUser(prevState, formData) {
         ...parsedValues,
       },
     });
-    // success registering, so redirect to blogs page
-    redirect("/blogs");
+
+    
   } catch (e) {
     console.log("e ", e);
     // handles unique attribute failure on username
@@ -123,4 +108,5 @@ export async function addUser(prevState, formData) {
       data: { general_error: "Error registering user" },
     };
   }
+  redirect("/blogs");
 }
